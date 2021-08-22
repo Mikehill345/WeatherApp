@@ -95,6 +95,7 @@ const Header = () => {
                                 px="8"
                                 shadow="base"
                                 onClick={() => history.push('/forecast')}
+                                data-testid='forecast'
                             >
                                 5 Day Forecast
                             </Button>

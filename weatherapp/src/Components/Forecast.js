@@ -54,7 +54,7 @@ const Forecast = () => {
                         <SimpleGrid m="4" columns={{ base: 1, md: 2, lg: 8 }} spacingX="6" spacingY="16">
                             {/* <h1>the Temp in {userWeather.name} is currently {kelvinToF(userWeather.main.temp)}°F</h1> */}
                             {userWeather.list.map((weather, i) => (
-                                <Box m='2' px='4' py='6' key={i}>
+                                <Box m='2' px='4' py='6' key={i} data-testid='LeBox'>
                                     <ForecastCard key={i} weather={weather} />
                                 </Box>
                             ))}

@@ -3,3 +3,6 @@
 ### Make sure to install all packages before starting the application ###
 
 *** to run the app npm start or yarn start**
+
+
+*** to run the testing suite npm test ***
