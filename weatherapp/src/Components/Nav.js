@@ -11,6 +11,7 @@ import { MobileNav } from './MobileNav'
 import { useHistory } from 'react-router-dom'
 const Nav = () => {
     const history = useHistory()
+    //Navigation for going around the website.
     return (
         <Box>
             <Box as="header" bg={mode('white', 'gray.800')} borderBottomWidth="1px">
@@ -26,7 +27,7 @@ const Nav = () => {
                     <Flex as="nav" justify="space-between">
                         <HStack spacing="8">
                             <Box as="a" href="#" rel="home">
-                                <VisuallyHidden>Envelope app</VisuallyHidden>
+                                <VisuallyHidden>Weather App</VisuallyHidden>
                             </Box>
                             <HStack
                                 display={{
@@ -35,6 +36,7 @@ const Nav = () => {
                                 }}
                                 spacing="8"
                             >
+                                
                                 <Button onClick={() => history.push('/')}>Todays Weather</Button>
                                 <Button onClick={() => history.push('/forecast')}>5 Day Forcast</Button>
                             </HStack>

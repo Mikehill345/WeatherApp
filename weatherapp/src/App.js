@@ -7,7 +7,7 @@ import Header from './Components/Header'
 
 function App() {
 
-
+// routes for mapping though the application
   return (
     <div className="App">
       <Header />

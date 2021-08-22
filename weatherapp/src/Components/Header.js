@@ -17,8 +17,8 @@ const Header = () => {
     const history = useHistory()
 
     return (
-        <Box as="section" bg={mode('gray.50', 'gray.800')}  pb="24">
-            <Nav/>
+        <Box as="section" bg={mode('gray.50', 'gray.800')} pb="16">
+            <Nav />
             <Box
                 maxW={{
                     base: 'xl',
@@ -71,7 +71,7 @@ const Header = () => {
                             The Mike Hill Weather Channel
                         </Heading>
                         <Text color={mode('gray.600', 'gray.400')} mt="4" fontSize="lg" fontWeight="medium">
-                           Look at the great weather we might or might not have in the forseeable future or today!
+                            Look at the great weather we might or might not have in the forseeable future or today!
                         </Text>
                         <Stack
                             direction={{
@@ -94,7 +94,7 @@ const Header = () => {
                                 height="14"
                                 px="8"
                                 shadow="base"
-                                onClick={() => history.push('/forecast')}           
+                                onClick={() => history.push('/forecast')}
                             >
                                 5 Day Forecast
                             </Button>

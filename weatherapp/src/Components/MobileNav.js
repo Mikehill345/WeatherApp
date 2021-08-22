@@ -14,7 +14,6 @@ import { motion } from 'framer-motion'
 import * as React from 'react'
 import FocusLock from 'react-focus-lock'
 import { RemoveScroll } from 'react-remove-scroll'
-import { NavLink } from './NavLink'
 const variants = {
   show: {
     display: 'revert',
