@@ -13,7 +13,7 @@ import {
     useDisclosure,
     Button,
 } from "@chakra-ui/react"
-import { modalState } from '../utils/Atom';
+import { modalState, weatherState } from '../utils/Atom';
 import { useRecoilState } from 'recoil'
 
 const CurrentTemp = () => {
@@ -21,7 +21,8 @@ const CurrentTemp = () => {
     const [userLat, setUserLat] = useState(0)
     const [userLong, setUserLong] = useState(0)
     const [loading, setLoading] = useState(false)
-    const [userWeather, setUserWeather] = useState([])
+    const [geoLoading, setGeoLoading] = useState(false)
+    const [userWeather, setUserWeather] = useRecoilState(weatherState)
     const [error, setError] = useState('')
     const [permission, setPermission] = useRecoilState(modalState)
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -33,8 +34,9 @@ const CurrentTemp = () => {
             navigator.geolocation.getCurrentPosition(function (position) {
                 setUserLat(position.coords.latitude);
                 setUserLong(position.coords.longitude);
-            });
-
+                setGeoLoading(true)
+                console.log(userLat, userLong)
+            })
             axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${userLat}&lon=${userLong}&appid=${APIKEY}`)
                 .then((res) => {
                     setUserWeather(res.data)
@@ -43,7 +45,7 @@ const CurrentTemp = () => {
                     setError(err)
                 })
         }
-    }, [userLat, userLong, permission, onOpen])
+    }, [userLat, userLong, permission, onOpen, setUserWeather, setGeoLoading])
     // Modal for asking for permission for Location services
     if (permission === false) {
         return (
@@ -57,14 +59,14 @@ const CurrentTemp = () => {
                             <Button colorScheme="blue" mr={3} onClick={onClose}>
                                 Deny
                             </Button>
-                            <Button  data-testid='allowBtn' colorScheme="blue" mr={3} onClick={() => setPermission(true)}>Allow</Button>
+                            <Button data-testid='allowBtn' colorScheme="blue" mr={3} onClick={() => setPermission(true)}>Allow</Button>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
             </>
         )
     }
-    else if (loading === false) {
+    else if (loading === false && geoLoading === false) {
         return (
             <div>
                 <Text>Doing some Loading right meow</Text>

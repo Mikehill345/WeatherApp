@@ -6,3 +6,8 @@ export const modalState = atom({
     key: 'modalState',
     default: false,
   });
+
+  export const weatherState = atom({
+    key: 'weatherState',
+    default:[],
+  });
