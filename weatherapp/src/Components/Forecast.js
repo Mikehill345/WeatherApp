@@ -8,7 +8,7 @@ const Forecast = () => {
     //state for the 5 day forecast getting users location
     const [userLat, setUserLat] = useState(0)
     const [userLong, setUserLong] = useState(0)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [userWeather, setUserWeather] = useState([])
     const [error, setError] = useState('')
 
@@ -21,14 +21,14 @@ const Forecast = () => {
         axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${userLat}&lon=${userLong}&appid=${APIKEY}`)
             .then((res) => {
                 setUserWeather(res.data)
-                setLoading(true)
+                setLoading(false)
             }).catch((err) => {
                 setError(err)
             })
     }, [userLat, userLong])
 
     // different ways to handle loading times and errors 
-    if (loading === false) {
+    if (loading === true) {
         return (
             <div>
                 <h1>Doing some Loading right meow</h1>

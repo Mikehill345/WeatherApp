@@ -27,31 +27,23 @@ const CurrentTemp = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
 
-    
     useEffect(() => {
-        let mounted = false
         onOpen()
         if (permission === true) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 setUserLat(position.coords.latitude);
                 setUserLong(position.coords.longitude);
             });
-        }
-        const weatherCall = async () => {
-            try {
-                const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${userLat}&lon=${userLong}&appid=${APIKEY}`)
-                setUserWeather(response)
-                setLoading(false)
-            } catch (e) {
-                setError(e)
-            }
-        }
-        weatherCall()
-        return () => {
-            mounted = true
-        }
-    }, [])
 
+            axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${userLat}&lon=${userLong}&appid=${APIKEY}`)
+                .then((res) => {
+                    setUserWeather(res.data)
+                    setLoading(true)
+                }).catch((err) => {
+                    setError(err)
+                })
+        }
+    }, [userLat, userLong, permission, onOpen])
     // Modal for asking for permission for Location services
     if (permission === false) {
         return (
@@ -65,7 +57,7 @@ const CurrentTemp = () => {
                             <Button colorScheme="blue" mr={3} onClick={onClose}>
                                 Deny
                             </Button>
-                            <Button data-testid='allowBtn' colorScheme="blue" mr={3} onClick={() => setPermission(true)}>Allow</Button>
+                            <Button  data-testid='allowBtn' colorScheme="blue" mr={3} onClick={() => setPermission(true)}>Allow</Button>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
