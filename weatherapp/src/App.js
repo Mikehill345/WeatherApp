@@ -13,18 +13,18 @@ function App() {
   return (
     <div className="App">
       <RecoilRoot>
-      <Header />
-      <BrowserRouter>
-        <Switch>
-          <Route path='/forecast'>
-            <Forecast />
-          </Route>
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route path='/forecast'>
+              <Forecast />
+            </Route>
 
-          <Route path='/'>
-            <CurrentTemp />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+            <Route path='/'>
+              <CurrentTemp />
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </RecoilRoot>
     </div>
   );

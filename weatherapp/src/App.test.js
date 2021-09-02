@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import React from 'react'
 import App from './App'
 import userEvent from '@testing-library/user-event'
+import { RecoilRoot } from 'recoil'
 
 
 const mockGeolocation = {
@@ -18,11 +19,11 @@ global.navigator.geolocation = mockGeolocation;
 describe('testing app renders header and nav', () => {
 
     test('app renders without errors', async () => {
-        render(<App />)
+        render(<RecoilRoot><App /></RecoilRoot>)
     })
 
     test('Checking for header rendering', async () => {
-        render(<App />)
+        render(<RecoilRoot><App /></RecoilRoot>)
         const modal = await screen.findAllByText(/Allow Access to Location/i)
         const allow = await screen.findByTestId(/allowBtn/i)
         await userEvent.click(allow)

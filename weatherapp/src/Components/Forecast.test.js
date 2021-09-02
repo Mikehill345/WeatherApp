@@ -3,6 +3,7 @@ import React from 'react'
 import App from '../App'
 import Forecast from './Forecast'
 import userEvent from '@testing-library/user-event'
+import { RecoilRoot } from 'recoil'
 
 const mockGeolocation = {
     getCurrentPosition: jest.fn()
@@ -25,15 +26,15 @@ jest.mock('react-router-dom', () => ({
 describe('testing forecast renders', () => {
 
     test('app renders without errors', async () => {
-        render(<App />)
+        render(<RecoilRoot><App /></RecoilRoot>)
     })
 
 
     test('can close modal and renders CurrentTemp', async () => {
-        render(<App />)
+        render(<RecoilRoot><App /></RecoilRoot>)
         const LeBox = await screen.findByTestId(/forecast/i)
         await userEvent.click(LeBox)
-        render(<Forecast />)
+        render(<RecoilRoot> <Forecast /> </RecoilRoot>)
 
     })
 })

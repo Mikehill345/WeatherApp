@@ -19,17 +19,17 @@ global.navigator.geolocation = mockGeolocation;
 describe('testing CurrentTemp can make api calls and renders them', () => {
 
     test('app renders without errors', async () => {
-        render(<App />)
+        render(<RecoilRoot> <App /> </RecoilRoot>)
     })
 
     test('shows modal pops up asking for permission', async () => {
-        render(<App />)
+        render(<RecoilRoot><App /> </RecoilRoot>)
 
         const modal = await screen.findAllByText(/Allow Access to Location/i)
     })
 
     test('can close modal and renders CurrentTemp', async () => {
-        render(<App />)
+        render(<RecoilRoot> <App /> </RecoilRoot>)
 
         const modal = await screen.findAllByText(/Allow Access to Location/i)
         const allow = await screen.findByTestId(/allowBtn/i)
@@ -37,7 +37,5 @@ describe('testing CurrentTemp can make api calls and renders them', () => {
 
         render(<RecoilRoot><CurrentTemp /></RecoilRoot>)
         const main = await screen.findByText(/GOOOOOOD MOOOOORRRNNNINNNGGG/i)
-
-
     })
 })
